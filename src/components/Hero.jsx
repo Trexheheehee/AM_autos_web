@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { HeroHighlight } from './ui/Highlight';
 import bgVideo from '../assets/AM_video.mp4';
 
 const Hero = () => {
@@ -25,8 +26,15 @@ const Hero = () => {
       <meta itemProp="foundingDate" content="2009" />
       <meta itemProp="areaServed" content="India" />
 
+      {/* Add HeroHighlight background under video */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 md:hidden bg-gradient-radial from-[#000B29]/100 via-[#001242]/90 to-blue-800/85" />
+        <HeroHighlight containerClassName="!h-full bg-[#030B1B]" />
+      </div>
+
+      <div className="absolute inset-0 z-[1]">
+        {/* Darker mobile gradient - reduce the /95, /90, /85 values to decrease strength */}
+        <div className="absolute inset-0 md:hidden bg-gradient-radial from-[#000B29]/70 via-[#000B29]/65 to-[#000B29]/60" />
+        
         <div className="relative h-full flex items-center justify-center">
           <video
             ref={videoRef}
@@ -48,7 +56,8 @@ const Hero = () => {
             />
           </video>
         </div>
-        <div className="absolute inset-0 hidden md:block bg-gradient-to-b from-blue-600/50 via-transparent to-transparent" />
+        {/* Darker desktop gradient - reduce the /80, /60 values to decrease strength */}
+        <div className="absolute inset-0 hidden md:block bg-gradient-to-b from-[#000B29]/60 via-[#000B29]/40 to-transparent" />
       </div>
 
       <div className="relative z-10 h-screen flex flex-col px-4">
